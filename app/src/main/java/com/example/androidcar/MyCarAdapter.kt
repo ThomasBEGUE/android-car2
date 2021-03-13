@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.RatingBar
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
@@ -15,10 +16,12 @@ class MyCarAdapter(private val arrayList: ArrayList<Car>, val context: Context) 
         var itemImage: ImageView = itemView.findViewById(R.id.imageIv)
         var itemTitle: TextView = itemView.findViewById(R.id.titleTv)
         var itemDescription: TextView = itemView.findViewById(R.id.descriptionTv)
+        var itemStars: RatingBar = itemView.findViewById(R.id.ratingBar)
 
         fun  bindItems(model: Car) {
             itemTitle.text = model.title
             itemDescription.text = model.description
+            itemStars.rating = model.stars
         }
     }
 
