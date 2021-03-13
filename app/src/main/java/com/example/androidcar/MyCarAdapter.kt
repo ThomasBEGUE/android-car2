@@ -4,16 +4,21 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.row.view.*
 
 class MyCarAdapter(private val arrayList: ArrayList<Car>, val context: Context) :
     RecyclerView.Adapter<MyCarAdapter.ViewHolder>() {
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun bindItems(model: Car) {
-            itemView.titleTv.text = model.title
-            itemView.descriptionTv.text = model.description
+        var itemImage: ImageView = itemView.findViewById(R.id.imageIv)
+        var itemTitle: TextView = itemView.findViewById(R.id.titleTv)
+        var itemDescription: TextView = itemView.findViewById(R.id.descriptionTv)
+
+        fun  bindItems(model: Car) {
+            itemTitle.text = model.title
+            itemDescription.text = model.description
         }
     }
 
