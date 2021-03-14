@@ -1,8 +1,10 @@
 package com.example.androidcar
 
+import android.graphics.Color
 import android.os.Bundle
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.forEach
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
@@ -40,7 +42,15 @@ class MainActivity : AppCompatActivity(), CarCommunicator{
         val detailsFragment = CarDetailsFragment()
         detailsFragment.arguments = bundle
 
-        transaction.replace(R.id.container, detailsFragment)
+        transaction.replace(R.id.nav_host_fragment, detailsFragment)
+        transaction.addToBackStack(CarDetailsFragment::class.java.name)
+
+        val navBar : BottomNavigationView = findViewById(R.id.nav_view)
+        navBar.menu.forEach {
+            it.isEnabled = false
+            it.isCheckable = false
+        }
+
         transaction.commit()
     }
 }

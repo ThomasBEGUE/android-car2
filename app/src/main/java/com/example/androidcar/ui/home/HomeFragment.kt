@@ -6,12 +6,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.view.forEach
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.androidcar.*
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class HomeFragment : Fragment(), OnCarItemClickListener {
 
@@ -96,15 +98,24 @@ class HomeFragment : Fragment(), OnCarItemClickListener {
             layoutManager = LinearLayoutManager(activity)
             // set the custom adapter to the RecyclerView
 
-            adapter = MyCarAdapter(getMockedCars(), carListenerImpl)
+            val cars : ArrayList<Car> = getMockedCars()
+            adapter = MyCarAdapter(cars, carListenerImpl)
 
-            activity?.title = "Licorne"
-                // itemView.context.resources.getQuantityString(R.plurals.number_of_cars, cars.size);
+            activity?.title = itemView.context.resources.getQuantityString(R.plurals.number_of_cars, cars.size, cars.size);
         }
     }
 
     override fun onItemClick(car: Car, position: Int) {
         communicator.passCar(car);
+    }
+
+    override fun onResume() {
+        super.onResume()
+        val navBar : BottomNavigationView? = activity?.findViewById(R.id.nav_view)
+        navBar?.menu?.forEach {
+            it.isEnabled = true
+            it.isCheckable = true
+        }
     }
 
 }

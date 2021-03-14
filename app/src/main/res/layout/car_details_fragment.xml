@@ -363,10 +363,11 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
             <!-- description section -->
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:background="@color/white"
-                android:layout_marginTop="@dimen/row_default_margin"
+                android:id="@+id/constraintLayout"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/row_default_margin"
+                android:background="@color/white">
 
                 <TextView
                     android:id="@+id/car_details_label_description"
@@ -396,14 +397,21 @@
                     android:layout_marginRight="24dp"
                     android:layout_marginBottom="16dp"
                     android:text="@string/placeholder_detail_car_default"
-                    android:textStyle="bold"
                     android:textColor="@color/darkGray"
+                    android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/car_details_label_description" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <View
+                android:id="@+id/margin_bottom"
+                android:layout_width="wrap_content"
+                android:layout_height="16dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
 
         </LinearLayout>
 </ScrollView>
