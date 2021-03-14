@@ -15,7 +15,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.androidcar.*
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
-class HomeFragment : Fragment(), OnCarItemClickListener {
+class HomeFragment : Fragment(), OnCarItemClickListener, DynamiqueTitleFragment {
 
     private lateinit var homeViewModel: HomeViewModel
     private lateinit var communicator: CarCommunicator
@@ -24,6 +24,8 @@ class HomeFragment : Fragment(), OnCarItemClickListener {
     private var adapter: RecyclerView.Adapter<RecyclerView.ViewHolder>? = null
 
     private lateinit var recyclerView: RecyclerView
+
+    private lateinit var cars : ArrayList<Car>
 
     override fun onCreateView(
             inflater: LayoutInflater,
@@ -42,6 +44,20 @@ class HomeFragment : Fragment(), OnCarItemClickListener {
         })
 
         communicator = activity as CarCommunicator
+
+        val carListenerImpl = this
+        recyclerView.apply{
+            // set a LinearLayoutManager to handle Android
+            // RecyclerView behavior
+            layoutManager = LinearLayoutManager(activity)
+            // set the custom adapter to the RecyclerView
+
+            cars = getMockedCars()
+            adapter = MyCarAdapter(cars, carListenerImpl)
+
+            activity?.title = onTitleChanged()
+        }
+
         return root
     }
 
@@ -91,18 +107,7 @@ class HomeFragment : Fragment(), OnCarItemClickListener {
 
     override fun onViewCreated(itemView: View, savedInstanceState: Bundle?) {
         super.onViewCreated(itemView, savedInstanceState)
-        val carListenerImpl = this
-        recyclerView.apply{
-            // set a LinearLayoutManager to handle Android
-            // RecyclerView behavior
-            layoutManager = LinearLayoutManager(activity)
-            // set the custom adapter to the RecyclerView
 
-            val cars : ArrayList<Car> = getMockedCars()
-            adapter = MyCarAdapter(cars, carListenerImpl)
-
-            activity?.title = itemView.context.resources.getQuantityString(R.plurals.number_of_cars, cars.size, cars.size);
-        }
     }
 
     override fun onItemClick(car: Car, position: Int) {
@@ -116,6 +121,10 @@ class HomeFragment : Fragment(), OnCarItemClickListener {
             it.isEnabled = true
             it.isCheckable = true
         }
+    }
+
+    override fun onTitleChanged(): String? {
+        return context?.resources?.getQuantityString(R.plurals.number_of_cars, cars.size, cars.size);
     }
 
 }

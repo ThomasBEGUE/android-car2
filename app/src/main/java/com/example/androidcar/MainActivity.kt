@@ -42,7 +42,7 @@ class MainActivity : AppCompatActivity(), CarCommunicator{
         val detailsFragment = CarDetailsFragment()
         detailsFragment.arguments = bundle
 
-        transaction.replace(R.id.nav_host_fragment, detailsFragment)
+        transaction.add(R.id.nav_host_fragment, detailsFragment)
         transaction.addToBackStack(CarDetailsFragment::class.java.name)
 
         val navBar : BottomNavigationView = findViewById(R.id.nav_view)
@@ -52,5 +52,22 @@ class MainActivity : AppCompatActivity(), CarCommunicator{
         }
 
         transaction.commit()
+    }
+
+    override fun onBackPressed() {
+        val navBar : BottomNavigationView = findViewById(R.id.nav_view)
+        navBar.menu.forEach {
+            it.isEnabled = true
+            it.isCheckable = true
+        }
+
+        // find the displayed fragment and change title
+        val navHostFragment = supportFragmentManager.primaryNavigationFragment
+        val fragment = navHostFragment?.childFragmentManager?.fragments?.get(0)
+        if ( fragment is DynamiqueTitleFragment ) {
+            title = (fragment as DynamiqueTitleFragment).onTitleChanged()
+        }
+
+        return super.onBackPressed()
     }
 }

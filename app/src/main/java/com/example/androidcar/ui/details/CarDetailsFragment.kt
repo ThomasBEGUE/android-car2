@@ -7,9 +7,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import com.example.androidcar.DynamiqueTitleFragment
 import com.example.androidcar.R
 
-class CarDetailsFragment : Fragment() {
+class CarDetailsFragment : Fragment(), DynamiqueTitleFragment {
 
     companion object {
         fun newInstance() = CarDetailsFragment()
@@ -41,6 +42,7 @@ class CarDetailsFragment : Fragment() {
         priceText.text = arguments?.getInt("price").toString();
         descriptionText.text = arguments?.getString("description");
 
+        activity?.title = onTitleChanged()
         return root
     }
 
@@ -50,5 +52,10 @@ class CarDetailsFragment : Fragment() {
         // Use the ViewModel
 
     }
+
+    override fun onTitleChanged(): String? {
+        return context?.resources?.getString(R.string.title_details_car);
+    }
+
 
 }

@@ -13,7 +13,6 @@
     <fragment
         android:id="@+id/navigation_dashboard"
         android:name="com.example.androidcar.ui.dashboard.DashboardFragment"
-        android:label="@string/title_create_car"
         tools:layout="@layout/fragment_dashboard" />
 
 </navigation>
