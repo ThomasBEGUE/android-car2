@@ -20,7 +20,8 @@
     <string name="placeholder_number_of_places">Nombre de places</string>
     <string name="placeholder_number_of_doors">Nombre de portes</string>
     <string name="placeholder_description">Description</string>
-    <string name="add_image_label">Ajouter une photo</string>
+    <string name="add_thumbnail_label">Ajouter</string>
+    <string name="add_thumbnail_second_label">une photo</string>
     <string name="validate_button_label">Valider</string>
 
 </resources>
