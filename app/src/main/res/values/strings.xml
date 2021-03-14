@@ -1,17 +1,26 @@
 <resources>
     <string name="app_name">AndroidCar</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
-    <string name="content_description_thumbnail_row">Miniature</string>
-    <string name="content_description_dashed_row">ligne vertical</string>
+    <!-- Section : List cars -->
+    <string name="title_home">Aucune voiture</string>
     <string name="placeholder_title_row">BMW i8 - Electrique</string>
     <string name="placeholder_price_row">250€</string>
-
     <plurals name="number_of_cars">
         <item quantity="zero">Aucune voiture</item>
         <item quantity="one">%d voiture</item>
         <item quantity="other">%d voitures</item>
     </plurals>
+    <string name="content_description_thumbnail_row">Miniature</string>
+    <string name="content_description_dashed_row">ligne vertical</string>
+    <!-- Section : Create car -->
+    <string name="title_create_car">Créer votre voiture</string>
+    <string name="placeholder_brands">Marque</string>
+    <string name="placeholder_model">Modèle</string>
+    <string name="placeholder_registration">Immatriculation</string>
+    <string name="placeholder_fuel">Carburant</string>
+    <string name="placeholder_number_of_places">Nombre de places</string>
+    <string name="placeholder_number_of_doors">Nombre de portes</string>
+    <string name="placeholder_description">Description</string>
+    <string name="add_image_label">Ajouter une photo</string>
+    <string name="validate_button_label">Valider</string>
 
 </resources>

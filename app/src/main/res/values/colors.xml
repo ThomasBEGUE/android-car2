@@ -8,8 +8,11 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="textBlack">#FF232D32</color>
-    <color name="textLightGray">#FFA9A9A9</color>
     <color name="yellow">#FFFFBC46</color>
-    <color name="darkGray">#FF979797</color>
     <color name="gray">#FFEAEDEF</color>
+    <color name="textLightGray">#FFA9A9A9</color>
+    <color name="darkGray">#FF979797</color>
+    <color name="buttonGray">#FFD8D8D8</color>
+    <color name="blue">#FF096AA6</color>
+
 </resources>
