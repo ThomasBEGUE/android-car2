@@ -5,18 +5,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.androidcar.Car
-import com.example.androidcar.MyCarAdapter
-import com.example.androidcar.R
+import com.example.androidcar.*
 
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment(), OnCarItemClickListener {
 
     private lateinit var homeViewModel: HomeViewModel
+    private lateinit var communicator: CarCommunicator
 
     private var layoutManager: RecyclerView.LayoutManager? = null
     private var adapter: RecyclerView.Adapter<RecyclerView.ViewHolder>? = null
@@ -39,6 +39,7 @@ class HomeFragment : Fragment() {
             // textView.text = it
         })
 
+        communicator = activity as CarCommunicator
         return root
     }
 
@@ -49,7 +50,7 @@ class HomeFragment : Fragment() {
         // Add some default values before change to api call
         cars.add(Car(
             id = 1,
-            brands = "Peugot",
+            brands = "Peugeot",
             model = "2008",
             registration = "ER7652PO",
             fuel = "Diesel",
@@ -88,17 +89,22 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(itemView: View, savedInstanceState: Bundle?) {
         super.onViewCreated(itemView, savedInstanceState)
+        val carListenerImpl = this
         recyclerView.apply{
             // set a LinearLayoutManager to handle Android
             // RecyclerView behavior
             layoutManager = LinearLayoutManager(activity)
             // set the custom adapter to the RecyclerView
 
-            adapter = MyCarAdapter(getMockedCars(), itemView.context)
+            adapter = MyCarAdapter(getMockedCars(), carListenerImpl)
 
             activity?.title = "Licorne"
                 // itemView.context.resources.getQuantityString(R.plurals.number_of_cars, cars.size);
         }
+    }
+
+    override fun onItemClick(car: Car, position: Int) {
+        communicator.passCar(car);
     }
 
 }

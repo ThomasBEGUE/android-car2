@@ -9,7 +9,7 @@ import android.widget.RatingBar
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class MyCarAdapter(private val arrayList: ArrayList<Car>, val context: Context) :
+class MyCarAdapter(private var arrayList: ArrayList<Car>, var clickListener: OnCarItemClickListener) :
     RecyclerView.Adapter<MyCarAdapter.ViewHolder>() {
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -18,12 +18,16 @@ class MyCarAdapter(private val arrayList: ArrayList<Car>, val context: Context) 
         var itemPrice: TextView = itemView.findViewById(R.id.price_row)
         var itemStars: RatingBar = itemView.findViewById(R.id.rating_bar_row)
 
-        fun  bindItems(model: Car) {
+        fun  bindItems(model: Car, action: OnCarItemClickListener) {
             val formattedMark = model.brands + " " + model.model + " - " + model.fuel
             itemBrandsModelFuel.text = formattedMark
             val formattedText: String = model.price.toString() + " €"
             itemPrice.text = formattedText
             itemStars.rating = model.stars
+
+            itemView.setOnClickListener {
+                action.onItemClick(model, adapterPosition)
+            }
         }
     }
 
@@ -37,6 +41,10 @@ class MyCarAdapter(private val arrayList: ArrayList<Car>, val context: Context) 
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bindItems(arrayList[position])
+        holder.bindItems(arrayList[position], clickListener)
     }
+}
+
+interface OnCarItemClickListener {
+    fun onItemClick(car: Car, position: Int)
 }

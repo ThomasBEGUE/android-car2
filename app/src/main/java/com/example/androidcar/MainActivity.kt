@@ -7,8 +7,9 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.example.androidcar.ui.details.CarDetailsFragment
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), CarCommunicator{
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,5 +25,22 @@ class MainActivity : AppCompatActivity() {
         navView.setupWithNavController(navController)
     }
 
+    override fun passCar(car: Car) {
+        val bundle = Bundle()
 
+        bundle.putString("model", car.brands + " " + car.model)
+        bundle.putString("registration", car.registration)
+        bundle.putString("fuel", car.fuel)
+        car.numberOfPlaces?.let { bundle.putInt("numberOfPlaces", it) }
+        car.numberOfDoors?.let { bundle.putInt("numberOfDoors", it) }
+        car.price?.let { bundle.putInt("price", it) }
+        bundle.putString("description", car.description)
+
+        val transaction = this.supportFragmentManager.beginTransaction()
+        val detailsFragment = CarDetailsFragment()
+        detailsFragment.arguments = bundle
+
+        transaction.replace(R.id.container, detailsFragment)
+        transaction.commit()
+    }
 }
