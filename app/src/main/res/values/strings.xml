@@ -23,5 +23,15 @@
     <string name="add_thumbnail_label">Ajouter</string>
     <string name="add_thumbnail_second_label">une photo</string>
     <string name="validate_button_label">Valider</string>
+    <!-- Section : Details car -->
+    <string name="title_details_car">Mon véhicule</string>
+    <string name="placeholder_detail_car_default">XXX</string>
+    <string name="label_details_car_model">Modèle</string>
+    <string name="label_details_car_registration">Immat</string>
+    <string name="label_details_car_fuel">Carburant</string>
+    <string name="label_details_car_number_of_places">Nb places</string>
+    <string name="label_details_car_number_of_doors">Nb portes</string>
+    <string name="label_details_car_price">Prix</string>
+    <string name="label_details_car_description">Description</string>
 
 </resources>
