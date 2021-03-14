@@ -39,8 +39,51 @@ class HomeFragment : Fragment() {
             // textView.text = it
         })
 
-
         return root
+    }
+
+    private fun getMockedCars() : ArrayList<Car>{
+
+        val cars = ArrayList<Car>()
+
+        // Add some default values before change to api call
+        cars.add(Car(
+            id = 1,
+            brands = "Peugot",
+            model = "2008",
+            registration = "ER7652PO",
+            fuel = "Diesel",
+            numberOfPlaces = 5,
+            numberOfDoors = 5,
+            description = "Belle voiture, en bon état.",
+            price = 50,
+            stars = 4f))
+
+        cars.add(Car(
+            id = 2,
+            brands = "Land Rover",
+            model = "Evoque",
+            registration = "AA111AA",
+            fuel = "Diesel",
+            numberOfPlaces = 5,
+            numberOfDoors = 5,
+            description = "En bon état.",
+            price = 120,
+            stars = 5f))
+
+        cars.add(Car(
+            id = 3,
+            brands = "Land Rover",
+            model = "Evoque",
+            registration = "AB123CD",
+            fuel = "Essence",
+            numberOfPlaces = 5,
+            numberOfDoors = 5,
+            description = "Bof bof",
+            price = 50,
+            stars = 2.5f))
+
+        return cars
     }
 
     override fun onViewCreated(itemView: View, savedInstanceState: Bundle?) {
@@ -51,35 +94,10 @@ class HomeFragment : Fragment() {
             layoutManager = LinearLayoutManager(activity)
             // set the custom adapter to the RecyclerView
 
-            val cars = ArrayList<Car>()
+            adapter = MyCarAdapter(getMockedCars(), itemView.context)
 
-            cars.add(Car("Titre 1", "description 1", 0, 2.5f))
-            cars.add(Car("Titre 2", "description 2", 0, 2.5f))
-            cars.add(Car("Titre 3", "description 3", 0, 2.5f))
-            cars.add(Car("Titre 4", "description 4", 0, 2.5f))
-            cars.add(Car("Titre 5", "description 5", 0, 2.5f))
-            cars.add(Car("Titre 6", "description 6", 0, 2.5f))
-            cars.add(Car("Titre 7", "description 7", 0, 2.5f))
-            cars.add(Car("Titre 8", "description 8", 0, 2.5f))
-            cars.add(Car("Titre 9", "description 9", 0, 2.5f))
-            cars.add(Car("Titre 10", "description 10", 0, 2.5f))
-            cars.add(Car("Titre 11", "description 11", 0, 2.5f))
-            cars.add(Car("Titre 12", "description 12", 0, 2.5f))
-            cars.add(Car("Titre 13", "description 13", 0, 2.5f))
-            cars.add(Car("Titre 14", "description 14", 0, 2.5f))
-            cars.add(Car("Titre 15", "description 15", 0, 2.5f))
-            cars.add(Car("Titre 16", "description 16", 0, 2.5f))
-            cars.add(Car("Titre 17", "description 17", 0, 2.5f))
-            cars.add(Car("Titre 18", "description 18", 0, 2.5f))
-            cars.add(Car("Titre 19", "description 19", 0, 2.5f))
-            cars.add(Car("Titre 20", "description 20", 0, 2.5f))
-            cars.add(Car("Titre 21", "description 21", 0, 2.5f))
-            cars.add(Car("Titre 22", "description 22", 0, 2.5f))
-            cars.add(Car("Titre 23", "description 23", 0, 2.5f))
-            cars.add(Car("Titre 24", "description 24", 0, 2.5f))
-            cars.add(Car("Titre 25", "description 25", 0, 2.5f))
-
-            adapter = MyCarAdapter(cars, itemView.context)
+            activity?.title = "Licorne"
+                // itemView.context.resources.getQuantityString(R.plurals.number_of_cars, cars.size);
         }
     }
 

@@ -15,7 +15,8 @@
         >
 
         <ImageView
-            android:id="@+id/imageIv"
+            android:id="@+id/thumbnail_row"
+            android:contentDescription="@string/content_description_thumbnail_row"
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:layout_alignParentStart="true"
@@ -30,8 +31,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/rowDetails"
-            android:layout_below="@id/imageIv"
-            android:layout_margin="@dimen/activity_vertical_margin"
+            android:layout_below="@id/thumbnail_row"
+            android:layout_marginTop="@dimen/row_default_margin"
+            android:layout_marginBottom="@dimen/row_default_margin"
+            android:layout_marginLeft="@dimen/row_2x_margin"
+            android:layout_marginRight="@dimen/row_2x_margin"
             >
 
             <View android:id="@+id/hiddenView"
@@ -40,32 +44,35 @@
                 android:layout_centerInParent="true"/>
 
             <TextView
-                android:id="@+id/titleTv"
+                android:id="@+id/brands_model_fuel_formatted_row"
+                android:contentDescription="@string/content_description_dashed_row"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
-                android:text="Title"
+                android:layout_alignParentStart="true"
+                android:text="@string/placeholder_title_row"
                 android:textColor="@color/textBlack"
-                android:textSize="22sp"
-                android:layout_below="@id/hiddenView"
-                />
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:layout_below="@id/hiddenView" />
 
             <ImageView
+                android:contentDescription="@string/content_description_dashed_row"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="1dp"
                 android:layout_marginRight="1dp"
-                android:layout_toStartOf="@id/descriptionTv"
-                android:layout_toLeftOf="@id/descriptionTv"
+                android:layout_toStartOf="@id/brands_model_fuel_formatted_row"
+                android:layout_toLeftOf="@id/brands_model_fuel_formatted_row"
                 android:background="@drawable/dotted_line"
                 android:layerType="software"
                 android:src="@drawable/stoke_line" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/descriptionTv"
-                android:text="description"
-                android:textSize="22sp"
+                android:id="@+id/price_row"
+                android:text="@string/placeholder_price_row"
+                android:textSize="26sp"
                 android:textStyle="bold"
                 android:textColor="@color/textBlack"
                 android:layout_below="@id/hiddenView"
@@ -73,11 +80,11 @@
                 android:layout_alignParentEnd="true"
                 />
             <RatingBar
-                android:id="@+id/ratingBar"
+                android:id="@+id/rating_bar_row"
                 style="@style/Widget.AppCompat.RatingBar.Small"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/titleTv"
+                android:layout_below="@id/brands_model_fuel_formatted_row"
                 android:numStars="5"
                 android:progressTint="@color/yellow"
                 android:progressBackgroundTint="@color/yellow"

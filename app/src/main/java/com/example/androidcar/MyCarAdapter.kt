@@ -13,14 +13,16 @@ class MyCarAdapter(private val arrayList: ArrayList<Car>, val context: Context) 
     RecyclerView.Adapter<MyCarAdapter.ViewHolder>() {
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        var itemImage: ImageView = itemView.findViewById(R.id.imageIv)
-        var itemTitle: TextView = itemView.findViewById(R.id.titleTv)
-        var itemDescription: TextView = itemView.findViewById(R.id.descriptionTv)
-        var itemStars: RatingBar = itemView.findViewById(R.id.ratingBar)
+        var itemThumbnail: ImageView = itemView.findViewById(R.id.thumbnail_row)
+        var itemBrandsModelFuel: TextView = itemView.findViewById(R.id.brands_model_fuel_formatted_row)
+        var itemPrice: TextView = itemView.findViewById(R.id.price_row)
+        var itemStars: RatingBar = itemView.findViewById(R.id.rating_bar_row)
 
         fun  bindItems(model: Car) {
-            itemTitle.text = model.title
-            itemDescription.text = model.description
+            val formattedMark = model.brands + " " + model.model + " - " + model.fuel
+            itemBrandsModelFuel.text = formattedMark
+            val formattedText: String = model.price.toString() + " €"
+            itemPrice.text = formattedText
             itemStars.rating = model.stars
         }
     }
