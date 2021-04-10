@@ -30,13 +30,7 @@ class MainActivity : AppCompatActivity(), CarCommunicator{
     override fun passCar(car: Car) {
         val bundle = Bundle()
 
-        bundle.putString("model", car.brands + " " + car.model)
-        bundle.putString("registration", car.registration)
-        bundle.putString("fuel", car.fuel)
-        car.numberOfPlaces?.let { bundle.putInt("numberOfPlaces", it) }
-        car.numberOfDoors?.let { bundle.putInt("numberOfDoors", it) }
-        car.price?.let { bundle.putInt("price", it) }
-        bundle.putString("description", car.description)
+        bundle.putInt("id", car.id)
 
         val transaction = this.supportFragmentManager.beginTransaction()
         val detailsFragment = CarDetailsFragment()
@@ -46,9 +40,9 @@ class MainActivity : AppCompatActivity(), CarCommunicator{
         transaction.addToBackStack(CarDetailsFragment::class.java.name)
 
         val navBar : BottomNavigationView = findViewById(R.id.nav_view)
-        navBar.menu.forEach {
-            it.isEnabled = false
-            it.isCheckable = false
+        navBar.menu.forEach { menuItem ->
+            menuItem.isEnabled = false
+            menuItem.isCheckable = false
         }
 
         transaction.commit()

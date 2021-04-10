@@ -7,55 +7,42 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.databinding.DataBindingUtil
 import com.example.androidcar.DynamiqueTitleFragment
 import com.example.androidcar.R
+import com.example.androidcar.databinding.CarDetailsFragmentBinding
 
 class CarDetailsFragment : Fragment(), DynamiqueTitleFragment {
 
-    companion object {
-        fun newInstance() = CarDetailsFragment()
-    }
-
-    private lateinit var viewModel: CarDetailsViewModel
+    private var binding: CarDetailsFragmentBinding? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        val root = inflater.inflate(R.layout.car_details_fragment, container, false)
+    ): View {
 
-        // get all fields and passe data to it
-        val modelText: TextView = root.findViewById(R.id.car_details_value_model)
-        val registrationText: TextView = root.findViewById(R.id.car_details_value_registration)
-        val fuelText: TextView = root.findViewById(R.id.car_details_value_fuel)
-        val numberOfPlacesText: TextView = root.findViewById(R.id.car_details_value_number_of_places)
-        val numberOfDoorsText: TextView = root.findViewById(R.id.car_details_value_number_of_doors)
-        val priceText: TextView = root.findViewById(R.id.car_details_value_price)
-        val descriptionText: TextView = root.findViewById(R.id.car_details_value_description)
+        val viewModel = ViewModelProvider(this).get(CarDetailsViewModel::class.java)
+        val carId = arguments?.getInt("id", -1)
 
-        // set all values
-        modelText.text = arguments?.getString("model");
-        registrationText.text = arguments?.getString("registration");
-        fuelText.text = arguments?.getString("fuel");
-        numberOfPlacesText.text = arguments?.getInt("numberOfPlaces").toString();
-        numberOfDoorsText.text = arguments?.getInt("numberOfDoors").toString();
-        priceText.text = arguments?.getInt("price").toString();
-        descriptionText.text = arguments?.getString("description");
+        if (carId?.compareTo(0)!! >= 0) {
+            viewModel.setCarById(carId)
+        }
+
+        binding = CarDetailsFragmentBinding.inflate(inflater, container, false).apply {
+            this.lifecycleOwner = this@CarDetailsFragment
+            this.viewModel = viewModel
+        }
 
         activity?.title = onTitleChanged()
-        return root
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(CarDetailsViewModel::class.java)
-        // Use the ViewModel
-
+        return binding!!.root
     }
 
     override fun onTitleChanged(): String? {
         return context?.resources?.getString(R.string.title_details_car);
     }
 
-
+    override fun onDestroyView() {
+        binding = null
+        super.onDestroyView()
+    }
 }

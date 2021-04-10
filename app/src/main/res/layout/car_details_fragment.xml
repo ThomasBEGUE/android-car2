@@ -1,11 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/gray"
-    tools:context=".ui.details.CarDetailsFragment">
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.androidcar.ui.details.CarDetailsViewModel" />
+    </data>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/gray"
+        tools:context=".ui.details.CarDetailsFragment">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -36,7 +43,7 @@
                     android:layout_width="wrap_content"
                     android:orientation="vertical"
                     app:layout_constraintGuide_percent="0.5"
-                />
+                    />
 
                 <TextView
                     android:id="@+id/car_details_label_model"
@@ -63,7 +70,8 @@
                     android:layout_marginEnd="24dp"
                     android:layout_marginRight="24dp"
                     android:textStyle="bold"
-                    android:text="@string/placeholder_detail_car_default"
+                    android:text="@{viewModel.getFullModel}"
+                    tools:text="@string/placeholder_detail_car_default"
                     android:textColor="@color/darkGray"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -119,7 +127,8 @@
                     android:layout_marginLeft="8dp"
                     android:layout_marginEnd="24dp"
                     android:layout_marginRight="24dp"
-                    android:text="@string/placeholder_detail_car_default"
+                    android:text="@{viewModel.registration}"
+                    tools:text="@string/placeholder_detail_car_default"
                     android:textColor="@color/darkGray"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -175,7 +184,8 @@
                     android:layout_marginLeft="8dp"
                     android:layout_marginEnd="24dp"
                     android:layout_marginRight="24dp"
-                    android:text="@string/placeholder_detail_car_default"
+                    android:text="@{viewModel.fuel}"
+                    tools:text="@string/placeholder_detail_car_default"
                     android:textColor="@color/darkGray"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -231,7 +241,8 @@
                     android:layout_marginLeft="8dp"
                     android:layout_marginEnd="24dp"
                     android:layout_marginRight="24dp"
-                    android:text="@string/placeholder_detail_car_default"
+                    android:text="@{Integer.toString(viewModel.numberOfPlaces)}"
+                    tools:text="@string/placeholder_detail_car_default"
                     android:textColor="@color/darkGray"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -287,7 +298,8 @@
                     android:layout_marginLeft="8dp"
                     android:layout_marginEnd="24dp"
                     android:layout_marginRight="24dp"
-                    android:text="@string/placeholder_detail_car_default"
+                    tools:text="@string/placeholder_detail_car_default"
+                    android:text="@{Integer.toString(viewModel.numberOfDoors)}"
                     android:textColor="@color/darkGray"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -343,7 +355,8 @@
                     android:layout_marginLeft="8dp"
                     android:layout_marginEnd="24dp"
                     android:layout_marginRight="24dp"
-                    android:text="@string/placeholder_detail_car_default"
+                    android:text="@{viewModel.getFormattedPrice}"
+                    tools:text="@string/placeholder_detail_car_default"
                     android:textColor="@color/darkGray"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -396,7 +409,8 @@
                     android:layout_marginEnd="24dp"
                     android:layout_marginRight="24dp"
                     android:layout_marginBottom="16dp"
-                    android:text="@string/placeholder_detail_car_default"
+                    android:text="@{viewModel.description}"
+                    tools:text="@string/placeholder_detail_car_default"
                     android:textColor="@color/darkGray"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -414,4 +428,5 @@
                 app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
 
         </LinearLayout>
-</ScrollView>
+    </ScrollView>
+</layout>

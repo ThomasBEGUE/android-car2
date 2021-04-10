@@ -9,7 +9,7 @@ import android.widget.RatingBar
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class MyCarAdapter(private var arrayList: ArrayList<Car>, var clickListener: OnCarItemClickListener) :
+class MyCarAdapter(private var arrayList: List<Car>, var clickListener: OnCarItemClickListener) :
     RecyclerView.Adapter<MyCarAdapter.ViewHolder>() {
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

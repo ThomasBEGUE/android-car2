@@ -1,6 +1,6 @@
 package com.example.androidcar
 
-class Car(
+data class Car(
     val id: Int,
     val brands: String? = "",
     val model: String? = "",
