@@ -5,6 +5,7 @@ import android.os.Bundle
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.forEach
+import androidx.fragment.app.FragmentTransaction
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
@@ -28,17 +29,19 @@ class MainActivity : AppCompatActivity(), CarCommunicator{
     }
 
     override fun passCar(car: Car) {
+        // Pass data to next fragment
         val bundle = Bundle()
-
-        bundle.putInt("id", car.id)
-
-        val transaction = this.supportFragmentManager.beginTransaction()
         val detailsFragment = CarDetailsFragment()
+        bundle.putInt("id", car.id)
         detailsFragment.arguments = bundle
 
+        // Configure animation
+        val transaction = this.supportFragmentManager.beginTransaction()
+        transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
         transaction.add(R.id.nav_host_fragment, detailsFragment)
         transaction.addToBackStack(CarDetailsFragment::class.java.name)
 
+        // Disabled button Bottom Navigation View
         val navBar : BottomNavigationView = findViewById(R.id.nav_view)
         navBar.menu.forEach { menuItem ->
             menuItem.isEnabled = false

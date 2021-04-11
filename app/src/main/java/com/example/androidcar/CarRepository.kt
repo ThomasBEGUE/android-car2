@@ -1,6 +1,6 @@
 package com.example.androidcar
 
-object CarRepository {
+object CarRepository : CarRepositoryInterface {
 
     val cars = listOf<Car>(
         Car(
@@ -41,7 +41,7 @@ object CarRepository {
         )
     )
 
-    fun findCarById(id: Int) : Car? {
+    override fun findCarById(id: Int) : Car? {
         for(car: Car in cars) {
             if(car.id == id) {
                 return car
@@ -49,4 +49,8 @@ object CarRepository {
         }
         return null
     }
+}
+
+interface CarRepositoryInterface {
+    fun findCarById(id: Int) : Car?
 }
